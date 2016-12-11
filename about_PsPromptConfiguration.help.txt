@@ -1,0 +1,75 @@
+TOPIC
+    about_PsPromptConfiguration
+
+SHORT DESCRIPTION
+    Describes how to use the $PsPrompt configuration object
+
+LONG DESCRIPTION
+    LISTING CURRENT CONFIGURATION
+        PS C:\>$PsPrompt
+        
+        This will show every available property and its current setting
+
+    SPECIAL CHARACTERS
+        Special characters are symbols which are used for either style or information.  These are generally UTF characters, but may have a fallback for when $PsObject.UseUTF is set to false.
+
+        To see a list of special characters:
+
+        PS C:\>$PsPrompt | select *Character
+
+        Each special character is actually an array of 0 to 2 real characters.        
+        The first character in the array is what will be displayed when $PsPrompt.UseUTF is set to true.
+        The second character in the array is what will be displayed when $PsPrompt.UseUTF is set to false.  If no second character is present, then nothing will be displayed when $PsPrompt.UseUTF is false.
+        If neither character is set (empty array), then the special character will be turned off.
+
+    COLORS
+        Colors set the foreground and background colors for various parts of the prompt.  All colors are of type [ConsoleColor]
+
+        To see a list of configurable colors:
+
+        PS C:\$PsPrompt | select *Color
+
+        When setting a color, be sure to use the ConsoleColor enumeration, e.g. [ConsoleColor]::Blue
+
+    PATH COMPRESSION
+        Path compression reduces the length of the displayed present working directory by truncating the names of folders between the root (i.e. 'C:') and the top-most folder. 
+
+        $PsPrompt.CompressPWD = ($true or $false) - Enables or disables path compression
+        $PsPrompt.CompressPWDLength = (number) - Sets the length at which any directory with a longer name is compressed
+        $PsPrompt.CompressPWDMore (string) - Sets an optional string of characters which show that compression has occured.  This string is calculated in the CompressPWDLength.
+    
+EXAMPLES
+    -------------------------- EXAMPLE 1 --------------------------
+
+    1. PS C:\>$PsPrompt.SeparatorCharacter = @(0xE0B0, '>')
+    2. PS C:\>$PsPrompt.SeparatorCharacter = @(0xE0B0)
+    3. PS C:\>$PsPrompt.SeparatorCharacter = @()
+        
+    Changes the separator symbol:
+    1. When $PsPrompt.UseUTF is $false, uses the replacement character '>'
+    2. When $PsPrompt.UseUTF is $false, ignores the separator
+    1 and 2. When $PsPrompt.UseUTF is $true, uses the character 0xE0B0 ()
+    3. Ignores the separator completely 
+
+
+    -------------------------- EXAMPLE 2 --------------------------
+
+    PS C:\>$PsPrompt.PWDBackgroundColor = [ConsoleColor]::Gray
+
+    Changes the background color for the path to Gray
+
+
+    -------------------------- EXAMPLE 2 --------------------------
+
+    PS C:\>$PSPrompt.CompressPWDLength = 5
+    PS C:\>$PsPrompt.CompressPWDMore = '..'
+    PS C:\>cd "C:\Program Files\Microsoft"
+
+    Causes the path in the prompt to display:
+    
+    C:\Pro..\Microsoft
+    
+
+SEE ALSO
+    about_PsPrompt
+    Set-PsPrompt

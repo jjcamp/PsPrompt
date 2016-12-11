@@ -1,0 +1,28 @@
+TOPIC
+    about_PsPrompt
+
+SHORT DESCRIPTION
+    The PsPrompt module is a highly-customizable agnoster-like prompt theme
+
+LONG DESCRIPTION
+    Configure the prompt using the $PsPrompt object (SEE about_PsPromptConfiguration)
+    
+EXAMPLES
+    -------------------------- EXAMPLE 1 --------------------------
+
+    PS C:\>Start-PsPrompt
+
+    Changes the prompt using the default configuration
+
+
+    -------------------------- EXAMPLE 2 --------------------------
+
+    PS C:\>$PsPrompt.PWDBackgroundColor = [ConsoleColor]::Gray
+    PS C:\>Start-PsPrompt
+
+    Changes the prompt, using a different background color for the path display
+
+
+SEE ALSO
+    about_PsPromptConfiguration
+    Set-PsPrompt
