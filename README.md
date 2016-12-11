@@ -21,9 +21,9 @@ Import-Module -Name PsPrompt
 Set-PsPrompt 
 ```
 
-Help and Cusomization
----------------------
-PsPrompt comes with build-in help files:
+Help and Customization
+----------------------
+PsPrompt comes with built-in help files:
 ```
 Get-Help about_PsPrompt
 Get-Help about_PsPromptConfiguration
