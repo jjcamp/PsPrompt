@@ -172,7 +172,7 @@ function Compress-Path([string]$path) {
 
 function Compress-PathPart([string]$path) {
     $parent = Split-Path $path -Parent
-    if ((Split-Path $parent -Parent) -eq '') {
+    if ($parent -eq '') {
         return Split-Path $path -Qualifier
     }
     $result = Compress-PathPart $parent
