@@ -165,6 +165,9 @@ function Compress-Path([string]$path) {
         return $path
     }
     $parent = Split-Path $path -Parent
+    if ($parent -eq '') {
+        return $path # Root directory
+    }
     $leaf = Split-Path $path -Leaf
     $result = Compress-PathPart $parent
     return Join-Path $result $leaf
